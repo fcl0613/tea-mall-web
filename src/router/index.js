@@ -4,6 +4,7 @@ import login from '@/views/login'
 import register from '@/views/register'
 import { getToken } from '@/utils/token'
 import home from '@/views/home'
+import homeContent from '@/views/homeContent'
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,14 @@ const router = new VueRouter({
     },
     {
       path: '/home',
-      component: home
+      component: home,
+      redirect: '/homeContent',
+      children: [
+        {
+          path: '/homeContent',
+          component: homeContent
+        }
+      ]
     }
   ]
 })

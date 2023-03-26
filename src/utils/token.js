@@ -1,5 +1,5 @@
 
-const TOKEN_KEY = 'WWX_TOKEN_SELLER'
+const TOKEN_KEY = 'WWX_TOKEN_WEB'
 
 export function setToken(token) { // 将token存入localStorage
     return localStorage.setItem(TOKEN_KEY, token)

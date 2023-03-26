@@ -5,7 +5,7 @@
         <div class="header">
           <div class="left">
             <h2>茶易网</h2>
-            <span>首页</span>
+            <span @click="toHomePage">首页</span>
           </div>
           <div class="right">热线：400-9993-513</div>
         </div>
@@ -99,6 +99,11 @@ export default {
     resetForm() {
       this.$refs['ruleForm'].resetFields()
     },
+    toHomePage() {
+      this.$router.push({
+        path: '/home'
+      })
+    }
   },
 }
 </script>
