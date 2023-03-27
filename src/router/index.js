@@ -5,6 +5,8 @@ import register from '@/views/register'
 import { getToken } from '@/utils/token'
 import home from '@/views/home'
 import homeContent from '@/views/homeContent'
+import goodsList from '@/views/goods'
+import goodsInfo from '@/views/goods/goodsInfo'
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,14 @@ const router = new VueRouter({
         {
           path: '/homeContent',
           component: homeContent
+        },
+        {
+          path: '/goodsList',
+          component: goodsList
+        },
+        {
+          path: '/goodsInfo',
+          component: goodsInfo
         }
       ]
     }

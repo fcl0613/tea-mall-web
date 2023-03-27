@@ -4,7 +4,7 @@
       <div class="category-info">
         <strong><a class="phr" href="#">{{ proObj.categoryName }}</a></strong>
         <span>
-          <a href="#" v-for="(item, index) in proObj.children" :key="index">{{ item.categoryName }}</a>
+          <a :href="'/#/goodsList?categoryId=' + item.id" v-for="(item, index) in proObj.children" :key="index">{{ item.categoryName }}</a>
         </span>
       </div>
       <div class="pro-list">
@@ -20,7 +20,7 @@
             <div class="title">{{ item.goodsName }}</div>
             <div class="btm">
               <div class="price">￥<span>{{ item.price }}</span></div>
-              <div class="btn"><el-button>立即购买</el-button></div>
+              <div class="btn"><el-button @click="goToGoodsInofPage(item.id)">立即购买</el-button></div>
             </div>
           </el-card>
         </div>
@@ -43,6 +43,16 @@ export default {
       baseImageUrl: baseImageUrl.BASE_IMG_URL
     }
   },
+  methods: {
+    goToGoodsInofPage(id) {
+      this.$router.push({
+        path: '/goodsInfo',
+        query: {
+          id
+        }
+      })
+    }
+  }
 }
 </script>
 

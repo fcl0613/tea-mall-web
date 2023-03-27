@@ -21,7 +21,7 @@
         </div>
         <div class="search-area">
           <el-input placeholder="请输入内容" v-model="keyword">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+            <el-button slot="append" icon="el-icon-search" @click="toGoodsListPage"></el-button>
           </el-input>
         </div>
         <div class="shoping-cart">
@@ -38,17 +38,17 @@
       <div class="header-nav">
         <div class="banner-header">
           <ul class="sub-nav">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">金骏眉</a></li>
-            <li><a href="#">大红袍</a></li>
-            <li><a href="#">铁观音</a></li>
-            <li><a href="#">龙井</a></li>
+            <li><a href="/#/home">首页</a></li>
+            <li><a href="/#/goodsList?categoryId=15">金骏眉</a></li>
+            <li><a href="/#/goodsList?categoryId=23">牡丹王</a></li>
+            <li><a href="/#/goodsList?categoryId=12">铁观音</a></li>
+            <li><a href="/#/goodsList?categoryId=4">龙井</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="content">
-      <router-view></router-view>
+      <router-view ref="child"></router-view>
     </div>
     <div class="footer">
       <div class="ft_txt">
@@ -88,6 +88,24 @@ export default {
         path: '/register',
       })
     },
+    toGoodsListPage() {
+      // console.log(this.$route.path)
+      if(this.$route.path === '/goodsList') {
+        // console.log(111)
+        this.$refs['child'].pageNum = 1
+        this.$refs['child'].pageSize = 20
+        this.$refs['child'].categoryId = null
+        this.$refs['child'].keyword = this.keyword
+        this.$refs['child'].getGoodsList()
+        return
+      }
+      this.$router.push({
+        path: '/goodsList',
+        query: {
+          keyword: this.keyword
+        }
+      })
+    }
   },
 }
 </script>
