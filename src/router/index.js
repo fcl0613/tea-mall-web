@@ -7,6 +7,7 @@ import home from '@/views/home'
 import homeContent from '@/views/homeContent'
 import goodsList from '@/views/goods'
 import goodsInfo from '@/views/goods/goodsInfo'
+import cart from '@/views/cart/'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,10 @@ const router = new VueRouter({
           component: goodsInfo
         }
       ]
+    },
+    {
+      path: '/cart',
+      component: cart
     }
   ]
 })

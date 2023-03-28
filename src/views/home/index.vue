@@ -25,7 +25,7 @@
           </el-input>
         </div>
         <div class="shoping-cart">
-          <el-button icon="el-icon-shopping-cart-2">购物车</el-button>
+          <el-button icon="el-icon-shopping-cart-2" @click="goToCart">购物车</el-button>
         </div>
         <div class="header-des">
           <div class="hotline">
@@ -104,6 +104,11 @@ export default {
         query: {
           keyword: this.keyword
         }
+      })
+    },
+    goToCart() {
+      this.$router.push({
+        path: '/cart'
       })
     }
   },

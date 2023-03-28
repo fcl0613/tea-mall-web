@@ -45,7 +45,7 @@
         <div class="btn-group">
           <div class="has-stock">
             <el-button type="primary">立即购买</el-button>
-            <el-button>加入购物车</el-button>
+            <el-button @click="addCart">加入购物车</el-button>
           </div>
         </div>
       </div>
@@ -103,6 +103,7 @@
 <script>
 import goodsApi from '@/api/goods'
 import baseImageUrl from '@/utils/baseImageUrl'
+import cartApi from '@/api/cart'
 export default {
   data() {
     return {
@@ -132,6 +133,11 @@ export default {
       console.log('鼠标离开')
     },
     handleChange() {},
+    addCart() {
+      cartApi.addCart(this.goodsInfo.goodsId).then((res) => {
+        this.$message.success(res.msg)
+      })
+    }
   },
 }
 </script>
