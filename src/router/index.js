@@ -8,6 +8,10 @@ import homeContent from '@/views/homeContent'
 import goodsList from '@/views/goods'
 import goodsInfo from '@/views/goods/goodsInfo'
 import cart from '@/views/cart/'
+import myLayout from '@/views/my/myLayout'
+import myinfo from '@/views/my/myinfo'
+import address from '@/views/my/address'
+import updatePassword from '@/views/my/updatePassword'
 
 Vue.use(VueRouter)
 
@@ -41,6 +45,25 @@ const router = new VueRouter({
         {
           path: '/goodsInfo',
           component: goodsInfo
+        },
+        {
+          path: 'myLayout',
+          component: myLayout,
+          redirect: '/home/myLayout/myinfo',
+          children: [
+            {
+              path: 'myinfo',
+              component: myinfo
+            },
+            {
+              path: 'address',
+              component: address
+            },
+            {
+              path: 'updatePassword',
+              component: updatePassword
+            }
+          ]
         }
       ]
     },

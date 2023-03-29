@@ -10,6 +10,7 @@
           </div>
           <div v-else>
             <span>欢迎登录</span>
+            <span style="margin-left: 10px; cursor: pointer;" @click="toMyPage">个人中心</span>
           </div>
         </div>
       </div>
@@ -109,6 +110,11 @@ export default {
     goToCart() {
       this.$router.push({
         path: '/cart'
+      })
+    },
+    toMyPage() {
+      this.$router.push({
+        path: '/home/myLayout'
       })
     }
   },

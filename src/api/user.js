@@ -21,4 +21,33 @@ export default {
             }
         })
     },
+    getInfo() {
+        return request({
+            url: '/user/info',
+            method: 'get'
+        })
+    },
+    updateInfo(obj) {
+        return request({
+            url: '/user/update',
+            method: 'post',
+            data: obj
+        })
+    },
+    updateAvatar(pl) {
+        return request({
+            url: '/user/update/avatar',
+            method: 'post',
+            params: {
+                pl
+            }
+        })
+    },
+    updatePassword(obj) {
+        return request({
+            url: '/user/update/password',
+            method: 'post',
+            data: obj
+        })
+    }
 }
