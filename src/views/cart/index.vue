@@ -108,6 +108,7 @@ export default {
     },
     handleChange(row) {
       console.log(row)
+      cartApi.updateCart(row.id, row.goodsCount).then((res) => {})
     },
     removeCart(id) {
       this.$confirm('确定要删除该商品嘛?', '提示', {
@@ -123,7 +124,18 @@ export default {
         })
         .catch(() => {})
     },
-    toPay() {},
+    toPay() {
+      if (this.checkCartIds.length === 0) {
+        this.$message.warning('请先选择商品')
+        return
+      }
+      this.$router.push({
+        path: '/orderConfirm',
+        query: {
+          cartId: this.checkCartIds,
+        },
+      })
+    },
     removeBatch() {
       if (this.checkCartIds.length === 0) {
         this.$message.error('请选择删除的商品')

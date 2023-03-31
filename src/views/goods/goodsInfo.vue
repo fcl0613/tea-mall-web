@@ -44,7 +44,7 @@
         </div>
         <div class="btn-group">
           <div class="has-stock">
-            <el-button type="primary">立即购买</el-button>
+            <el-button type="primary" @click="toBuy">立即购买</el-button>
             <el-button @click="addCart">加入购物车</el-button>
           </div>
         </div>
@@ -136,6 +136,15 @@ export default {
     addCart() {
       cartApi.addCart(this.goodsInfo.goodsId).then((res) => {
         this.$message.success(res.msg)
+      })
+    },
+    toBuy() {
+      this.$router.push({
+        path: '/orderConfirmDirect',
+        query: {
+          goodsId: this.goodsId,
+          count: this.goodsCount
+        }
       })
     }
   },

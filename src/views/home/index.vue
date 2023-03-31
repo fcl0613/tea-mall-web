@@ -11,6 +11,7 @@
           <div v-else>
             <span>欢迎登录</span>
             <span style="margin-left: 10px; cursor: pointer;" @click="toMyPage">个人中心</span>
+            <span style="margin-left: 10px; cursor: pointer;" @click="toMyPage">退出登录</span>
           </div>
         </div>
       </div>

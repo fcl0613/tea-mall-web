@@ -12,6 +12,8 @@ import myLayout from '@/views/my/myLayout'
 import myinfo from '@/views/my/myinfo'
 import address from '@/views/my/address'
 import updatePassword from '@/views/my/updatePassword'
+import order from '@/views/order'
+import directBuy from '@/views/order/directBuy'
 
 Vue.use(VueRouter)
 
@@ -64,6 +66,14 @@ const router = new VueRouter({
               component: updatePassword
             }
           ]
+        },
+        {
+          path: '/orderConfirm',
+          component: order
+        },
+        {
+          path: '/orderConfirmDirect',
+          component: directBuy
         }
       ]
     },
