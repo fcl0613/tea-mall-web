@@ -29,7 +29,7 @@ export default {
         {index: 1, name: '个人信息', path: '/home/myLayout/myinfo'},
         {index: 2, name: '地址管理', path: '/home/myLayout/address'},
         {index: 3, name: '修改密码', path: '/home/myLayout/updatePassword'},
-        {index: 4, name: '我的订单', path: ''},
+        {index: 4, name: '我的订单', path: '/home/myLayout/orderList'},
         {index: 5, name: '我的购物车', path: '/cart'},
         {index: 6, name: '待评价商品', path: ''}
       ],
@@ -65,6 +65,7 @@ export default {
       width: 150px;
       border: 1px solid #ddd;
       background-color: #fff;
+      height: 300px;
       ul {
         li {
           letter-spacing: 2px;

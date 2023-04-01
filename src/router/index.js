@@ -14,6 +14,8 @@ import address from '@/views/my/address'
 import updatePassword from '@/views/my/updatePassword'
 import order from '@/views/order'
 import directBuy from '@/views/order/directBuy'
+import orderList from '@/views/order/orderList'
+import orderDetail from '@/views/order/orderDetail'
 
 Vue.use(VueRouter)
 
@@ -64,6 +66,14 @@ const router = new VueRouter({
             {
               path: 'updatePassword',
               component: updatePassword
+            },
+            {
+              path: 'orderlist',
+              component: orderList
+            },
+            {
+              path: 'orderdetail',
+              component: orderDetail
             }
           ]
         },
