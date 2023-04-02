@@ -31,7 +31,7 @@ export default {
         {index: 3, name: '修改密码', path: '/home/myLayout/updatePassword'},
         {index: 4, name: '我的订单', path: '/home/myLayout/orderList'},
         {index: 5, name: '我的购物车', path: '/cart'},
-        {index: 6, name: '待评价商品', path: ''}
+        {index: 6, name: '待评价商品', path: '/home/myLayout/commentGoods'}
       ],
       curIndex: 1
     }

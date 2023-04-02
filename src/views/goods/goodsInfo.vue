@@ -3,7 +3,8 @@
     <div class="goods-base-info">
       <div class="pic-area">
         <div class="main-pic">
-          <el-image v-if="curImageUrl"
+          <el-image
+            v-if="curImageUrl"
             style="width: 380px; height: 380px"
             :src="baseImageUrl + curImageUrl"
             fit="fit"
@@ -30,7 +31,9 @@
         <div class="goods-name">{{ goodsInfo.goodsName }}</div>
         <div class="goods-des">{{ goodsInfo.subtitle }}</div>
         <div class="goods-price">
-          <strong>￥<span>{{ goodsInfo.price }}</span></strong>
+          <strong
+            >￥<span>{{ goodsInfo.price }}</span></strong
+          >
         </div>
         <div class="goods-count">
           <span>数 量:</span>
@@ -68,26 +71,27 @@
         <el-tab-pane label="评价详情">
           <div class="detail">
             <el-divider><h2>商品评价</h2></el-divider>
-            <div class="comment-list">
-              <div class="comment-item">
+            <div class="comment-list" v-if="commentList.length > 0">
+              <div class="comment-item" v-for="(item, index) in commentList" :key="index">
                 <div class="comment-left">
                   <el-avatar
                     :size="50"
-                    src="http://wx.qlogo.cn/mmopen/vi_32/rh2ib1iat8EXh3Z4PzsPLTVGdFS7YCribnDsydz22kPAxQdQAiaicXFniczMl6XQR5t3XY7oYnX7qg46zyaGsHOh0fPQ/0"
+                    :src="baseImageUrl + item.userAvatar"
                   ></el-avatar>
                 </div>
                 <div class="comment-right">
                   <div class="right-header">
-                    <div class="fl">152****2233</div>
-                    <div class="fr">2023-03-10 12:51</div>
+                    <div class="fl">{{ item.userName }}</div>
+                    <div class="fr">{{ item.createTime }}</div>
                   </div>
-                  <div class="comment-content">dadawdwa</div>
+                  <div class="comment-content">{{ item.content }}</div>
                 </div>
               </div>
             </div>
             <div class="page-area" v-if="commentCount > 5">
               <el-pagination
                 background
+                @current-change="handleCurrentChange"
                 layout="prev, pager, next"
                 :total="commentCount"
               >
@@ -104,6 +108,7 @@
 import goodsApi from '@/api/goods'
 import baseImageUrl from '@/utils/baseImageUrl'
 import cartApi from '@/api/cart'
+import commentAPi from '@/api/comment'
 export default {
   data() {
     return {
@@ -112,11 +117,15 @@ export default {
       baseImageUrl: baseImageUrl.BASE_IMG_URL,
       goodsCount: 1,
       commentCount: 0,
-      curImageUrl:'',
+      curImageUrl: '',
+      pageNum: 1,
+      pageSize: 5,
+      commentList: []
     }
   },
   created() {
-      this.getGoodsInfo()
+    this.getGoodsInfo()
+    this.getCommentList()
   },
   methods: {
     getGoodsInfo() {
@@ -143,8 +152,17 @@ export default {
         path: '/orderConfirmDirect',
         query: {
           goodsId: this.goodsId,
-          count: this.goodsCount
-        }
+          count: this.goodsCount,
+        },
+      })
+    },
+    handleCurrentChange(val) {
+      this.pageNum = val
+    },
+    getCommentList() {
+      commentAPi.getCommentList(this.pageNum, this.pageSize, this.goodsId).then((res) => {
+        this.commentList = res.data.list
+        this.commentCount = res.data.total
       })
     }
   },

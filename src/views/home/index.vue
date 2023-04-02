@@ -11,7 +11,7 @@
           <div v-else>
             <span>欢迎登录</span>
             <span style="margin-left: 10px; cursor: pointer;" @click="toMyPage">个人中心</span>
-            <span style="margin-left: 10px; cursor: pointer;" @click="toMyPage">退出登录</span>
+            <span style="margin-left: 10px; cursor: pointer;" @click="logout">退出登录</span>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
 
 <script>
 import homeApi from '@/api/home'
-import { getToken } from '@/utils/token'
+import { getToken, removeToken } from '@/utils/token'
 import HomeProList from '@/components/HomeProList'
 export default {
   components: {
@@ -117,6 +117,10 @@ export default {
       this.$router.push({
         path: '/home/myLayout'
       })
+    },
+    logout() {
+      removeToken()
+      this.$router.push('/login')
     }
   },
 }

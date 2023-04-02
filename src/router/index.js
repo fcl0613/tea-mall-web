@@ -16,6 +16,7 @@ import order from '@/views/order'
 import directBuy from '@/views/order/directBuy'
 import orderList from '@/views/order/orderList'
 import orderDetail from '@/views/order/orderDetail'
+import commentGoods from '@/views/my/commentGoods'
 
 Vue.use(VueRouter)
 
@@ -74,6 +75,10 @@ const router = new VueRouter({
             {
               path: 'orderdetail',
               component: orderDetail
+            },
+            {
+              path: 'commentGoods',
+              component: commentGoods
             }
           ]
         },

@@ -66,5 +66,11 @@ export default {
                 id
             }
         })
+    },
+    getCommentGoods() {
+        return request({
+            url: '/order/detail/list',
+            method: 'get'
+        })
     }
 }
