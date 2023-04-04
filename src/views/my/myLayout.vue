@@ -61,7 +61,6 @@ export default {
         { index: 4, name: '我的订单', path: '/home/myLayout/orderList' },
         { index: 5, name: '我的购物车', path: '/cart' },
         { index: 6, name: '待评价商品', path: '/home/myLayout/commentGoods' },
-        { index: 7, name: '申请入驻', path: '' },
       ],
       curIndex: 1,
       dialogFormVisible: false,
@@ -75,8 +74,6 @@ export default {
   methods: {
     changeMenu(item) {
       if (this.curIndex === item.index) return
-      if (item.index === 7) {
-      }
       this.curIndex = item.index
       this.$router.push({
         path: item.path,
