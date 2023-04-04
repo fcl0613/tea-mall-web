@@ -49,5 +49,12 @@ export default {
             method: 'post',
             data: obj
         })
+    },
+    storeApply(obj) {
+        return request({
+            url: '/user/seller/apply',
+            method: 'post',
+            data: obj
+        })
     }
 }

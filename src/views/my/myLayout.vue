@@ -9,42 +9,91 @@
     <div class="content">
       <div class="left">
         <ul>
-          <li v-for="item in menu" :key="item.index" :class="item.index === curIndex ? 'active': ''" @click="changeMenu(item)">{{ item.name }}</li>
+          <li
+            v-for="item in menu"
+            :key="item.index"
+            :class="item.index === curIndex ? 'active' : ''"
+            @click="changeMenu(item)"
+          >
+            {{ item.name }}
+          </li>
+          <li v-if="userInfo.role === 0" @click="dialogFormVisible = true">申请入驻</li>
         </ul>
       </div>
       <div class="right">
         <div class="right-layout">
-            <router-view></router-view>
+          <router-view></router-view>
         </div>
       </div>
     </div>
+
+    <el-dialog title="申请信息" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="姓名">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="联系方式">
+          <el-input v-model="form.phone" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="店铺名称">
+          <el-input v-model="form.storeName" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="subForm"
+          >确 定</el-button
+        >
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import userApi from '@/api/user'
 export default {
   data() {
-    return{
+    return {
       menu: [
-        {index: 1, name: '个人信息', path: '/home/myLayout/myinfo'},
-        {index: 2, name: '地址管理', path: '/home/myLayout/address'},
-        {index: 3, name: '修改密码', path: '/home/myLayout/updatePassword'},
-        {index: 4, name: '我的订单', path: '/home/myLayout/orderList'},
-        {index: 5, name: '我的购物车', path: '/cart'},
-        {index: 6, name: '待评价商品', path: '/home/myLayout/commentGoods'}
+        { index: 1, name: '个人信息', path: '/home/myLayout/myinfo' },
+        { index: 2, name: '地址管理', path: '/home/myLayout/address' },
+        { index: 3, name: '修改密码', path: '/home/myLayout/updatePassword' },
+        { index: 4, name: '我的订单', path: '/home/myLayout/orderList' },
+        { index: 5, name: '我的购物车', path: '/cart' },
+        { index: 6, name: '待评价商品', path: '/home/myLayout/commentGoods' },
+        { index: 7, name: '申请入驻', path: '' },
       ],
-      curIndex: 1
+      curIndex: 1,
+      dialogFormVisible: false,
+      userInfo: {},
+      form: {}
     }
+  },
+  created(){
+    this.getInfo()
   },
   methods: {
     changeMenu(item) {
-      if(this.curIndex === item.index) return
+      if (this.curIndex === item.index) return
+      if (item.index === 7) {
+      }
       this.curIndex = item.index
       this.$router.push({
-        path: item.path
+        path: item.path,
+      })
+    },
+    getInfo() {
+      userApi.getInfo().then((res) => {
+        this.userInfo = res.data
+      })
+    },
+    subForm() {
+      userApi.storeApply(this.subForm).then((res) => {
+        this.$message.success('申请成功')
+        this.dialogFormVisible = false
       })
     }
-  }
+  },
 }
 </script>
 
